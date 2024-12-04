@@ -10,4 +10,9 @@ export default [
     files: ["**/*.js", "**/*.ts"],
   },
   eslintConfigPrettier,
+  {
+    rules: {
+      "@typescript-eslint/no-unsafe-type-assertion": "off", // We avoid using `as` as much as possible, but sometimes we have no choice
+    },
+  },
 ];

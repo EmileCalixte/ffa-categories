@@ -1,1 +1,1 @@
-export * from "./ffaCategories";
+export * from "./getCategoryCode";
