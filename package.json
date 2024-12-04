@@ -1,0 +1,48 @@
+{
+  "name": "ffa-categories",
+  "version": "1.0.0",
+  "description": "Package utilitaire permettant de manipuler les catégories de la Fédération Française d'Athlétisme",
+  "author": "Emile Calixte",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "format": "prettier \"./**/*.{js,ts,json}\" --write",
+    "lint-path": "eslint --max-warnings=0 --no-warn-ignored",
+    "lint": "pnpm lint-path .",
+    "lint-fix": "pnpm lint --fix",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "pnpm format",
+      "pnpm lint-fix"
+    ]
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./dist/utils.mjs",
+      "require": "./dist/utils.js"
+    }
+  },
+  "keywords": [
+    "ffa",
+    "fédération française d'athlétisme"
+  ],
+  "license": "GPL-3.0",
+  "type": "module",
+  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631",
+  "devDependencies": {
+    "@types/eslint-config-prettier": "^6.11.3",
+    "eslint": "^9.16.0",
+    "eslint-config-love": "^109.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.4.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

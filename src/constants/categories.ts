@@ -1,0 +1,32 @@
+/**
+ * List of all existing or former FFA categories (see https://www.athle.fr/asp.net/main.html/html.aspx?htmlid=25)
+ */
+export const ALL_CATEGORIES = [
+  "BB",
+  "EA",
+  "PO",
+  "BE",
+  "MI",
+  "CA",
+  "JU",
+  "ES",
+  "SE",
+  "VE",
+  "V1",
+  "V2",
+  "V3",
+  "V4",
+  "V5",
+  "MA",
+  "M0",
+  "M1",
+  "M2",
+  "M3",
+  "M4",
+  "M5",
+  "M6",
+  "M7",
+  "M8",
+  "M9",
+  "M10",
+] as const;
