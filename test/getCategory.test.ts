@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { getCategory } from "../src";
 
-describe.skip("Category depending on date and birth date", () => {
+describe("Category depending on date and birth date", () => {
   const testCases = [
     [
       "New 'Baby Athlé' category from 2015-11-01",
@@ -30,8 +30,8 @@ describe.skip("Category depending on date and birth date", () => {
     [
       "'École d'Athlétisme' becomes 'Éveil Athlétique' on 2022-09-01",
       [
-        [2014, "2023-08-31T23:59:59", { code: "EA", name: "École d'Athlétisme" }],
-        [2011, "2023-09-01T00:00:00", { code: "EA", name: "Éveil Athlétique" }],
+        [2014, "2022-08-31T23:59:59", { code: "EA", name: "École d'Athlétisme" }],
+        [2014, "2022-09-01T00:00:00", { code: "EA", name: "Éveil Athlétique" }],
       ],
     ],
     [

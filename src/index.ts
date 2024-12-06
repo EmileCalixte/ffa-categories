@@ -1,3 +1,3 @@
 export * from "./getApplicableCategoriesYear";
-export * from "./getCategories";
+export { getCategoryList } from "./getCategories";
 export * from "./getCategory";

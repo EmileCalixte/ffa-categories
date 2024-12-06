@@ -1,4 +1,47 @@
-import type { CategoryCode } from "./types/categories";
+import { getApplicableCategoriesYear } from "./getApplicableCategoriesYear";
+import { getCategoryList, getCategoryMinAges } from "./getCategories";
+import type { CategoryCode, CategoryData, CategoryList } from "./types/categories";
+
+function getCategoryDataFromCode(code: CategoryCode, categories: CategoryList): CategoryData {
+  const name = categories[code];
+
+  if (name === undefined) {
+    throw new Error(`No category found with code ${code}`);
+  }
+
+  return {
+    code,
+    name,
+  };
+}
+
+function getCategoryFromAge(date: Date, detailed: boolean, age: number): CategoryData {
+  function rtrn(age: number, categoryCode: CategoryCode | null, categories: CategoryList): CategoryData {
+    if (categoryCode === null) {
+      throw new Error(`No category code found for age ${age}`);
+    }
+
+    return getCategoryDataFromCode(categoryCode, categories);
+  }
+
+  if (age < 0) {
+    age = 0;
+  }
+
+  const categories = getCategoryList(date, detailed);
+  const minAges = getCategoryMinAges(date, detailed);
+
+  let currentCategoryCode: string | null = null;
+  for (const [categoryCode, minAge] of Object.entries(minAges).sort(([, minAge1], [, minAge2]) => minAge1 - minAge2)) {
+    if (age < minAge) {
+      return rtrn(age, currentCategoryCode as CategoryCode | null, categories);
+    }
+
+    currentCategoryCode = categoryCode;
+  }
+
+  return rtrn(age, currentCategoryCode as CategoryCode | null, categories);
+}
 
 interface GetCategoryOptions {
   /**
@@ -13,11 +56,6 @@ interface GetCategoryOptions {
    */
   detailed: boolean;
 }
-
-const DEFAULT_OPTIONS: GetCategoryOptions = {
-  date: new Date(),
-  detailed: true,
-};
 
 /**
  * Computes the category code corresponding to the birth year provided on the date provided, or on the current date if no date is provided
@@ -35,13 +73,15 @@ const DEFAULT_OPTIONS: GetCategoryOptions = {
  * getCategoryCode(1970, { date: new Date("2015-01-01"), detailed: false }); // Returns { code: "VE", name: "Vétérans" }
  * ```
  */
-export function getCategory(
-  birthYear: number,
-  options: Partial<GetCategoryOptions> = {},
-): { code: CategoryCode; name: string } {
-  options = Object.assign(DEFAULT_OPTIONS, options);
+export function getCategory(birthYear: number, options: Partial<GetCategoryOptions> = {}): CategoryData {
+  const date = options.date ?? new Date();
+  const detailed = options.detailed ?? true;
 
-  //   const { date, detailed } = options;
+  /**
+   * This is not the real age, but the age calculated based on the categories applicable on the date provided.
+   * @see getApplicableCategoriesYear
+   */
+  const applicableAge = getApplicableCategoriesYear(date) - birthYear;
 
-  return { code: "V1", name: "Masters 1" }; // TODO
+  return getCategoryFromAge(date, detailed, applicableAge);
 }
