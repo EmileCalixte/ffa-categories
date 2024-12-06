@@ -13,6 +13,7 @@ export default [
   {
     rules: {
       "@typescript-eslint/no-unsafe-type-assertion": "off", // We avoid using `as` as much as possible, but sometimes we have no choice
+      "@typescript-eslint/no-magic-numbers": "off", // Annoying when we just want to do a "+ 1" or in test files
     },
   },
 ];

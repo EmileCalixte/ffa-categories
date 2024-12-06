@@ -1,1 +1,3 @@
-export * from "./getCategoryCode";
+export * from "./getApplicableCategoriesYear";
+export * from "./getCategories";
+export * from "./getCategory";
