@@ -4,6 +4,82 @@ import { getCategory } from "../src";
 describe("Category depending on date and birth date", () => {
   const testCases = [
     [
+      "Category evolution for somebody born in 1975",
+      [
+        [1975, "2012-01-01T00:00:00", { code: "SE", name: "Seniors" }],
+        [1975, "2014-10-31T23:59:59", { code: "SE", name: "Seniors" }],
+        [1975, "2014-11-01T00:00:00", { code: "VE", name: "Vétérans" }, { code: "V1", name: "Vétérans 1" }],
+        [1975, "2015-10-31T23:59:59", { code: "VE", name: "Vétérans" }, { code: "V1", name: "Vétérans 1" }],
+        [1975, "2015-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "V1", name: "Masters 1" }], // 'Vétérans' are now named 'Masters'
+        [1975, "2019-10-31T23:59:59", { code: "VE", name: "Masters" }, { code: "V1", name: "Masters 1" }],
+        [1975, "2019-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M2", name: "Masters 2" }], // 'Masters' categories are split in 10 sub-categories instead of 5, with new 'Mx' code
+        [1975, "2024-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M2", name: "Masters 2" }],
+        [1975, "2024-09-01T00:00:00", { code: "MA", name: "Masters" }, { code: "M3", name: "Masters 3" }], // Code 'VE' becomes 'MA' from September 1st 2024 (2025 categories)
+      ],
+    ],
+    [
+      "Category evolution for somebody born in 1984",
+      [
+        [1984, "2012-01-01T00:00:00", { code: "SE", name: "Seniors" }],
+        [1984, "2019-10-31T23:59:59", { code: "SE", name: "Seniors" }],
+        [1984, "2019-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M0", name: "Masters 0" }], // 'Masters' categories are split in 10 sub-categories instead of 5 and takes effect 5 years younger
+        [1984, "2023-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M0", name: "Masters 0" }],
+        [1984, "2023-09-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M1", name: "Masters 1" }],
+        [1984, "2024-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M1", name: "Masters 1" }],
+        [1984, "2024-09-01T00:00:00", { code: "MA", name: "Masters" }, { code: "M1", name: "Masters 1" }], // Code 'VE' becomes 'MA' from September 1st 2024 (2025 categories)
+      ],
+    ],
+    [
+      "Category evolution for somebody born in 1989",
+      [
+        [1989, "2011-01-01T00:00:00", { code: "ES", name: "Espoirs" }],
+        [1989, "2011-12-31T23:59:59", { code: "ES", name: "Espoirs" }],
+        [1989, "2012-01-01T00:00:00", { code: "SE", name: "Seniors" }],
+        [1989, "2023-08-31T23:59:59", { code: "SE", name: "Seniors" }],
+        [1989, "2023-09-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M0", name: "Masters 0" }],
+        [1989, "2024-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M0", name: "Masters 0" }],
+        [1989, "2024-09-01T00:00:00", { code: "MA", name: "Masters" }, { code: "M0", name: "Masters 0" }], // Code 'VE' becomes 'MA' from September 1st 2024 (2025 categories)
+      ],
+    ],
+    [
+      "Category evolution for somebody born in 2002",
+      [
+        [2002, "2012-01-01T00:00:00", { code: "PO", name: "Poussins" }],
+        [2002, "2013-12-31T23:59:59", { code: "PO", name: "Poussins" }],
+        [2002, "2014-01-01T00:00:00", { code: "BE", name: "Benjamins" }],
+        [2002, "2015-10-31T23:59:59", { code: "BE", name: "Benjamins" }],
+        [2002, "2015-11-01T00:00:00", { code: "MI", name: "Minimes" }],
+        [2002, "2017-10-31T23:59:59", { code: "MI", name: "Minimes" }],
+        [2002, "2017-11-01T00:00:00", { code: "CA", name: "Cadets" }],
+        [2002, "2019-10-31T23:59:59", { code: "CA", name: "Cadets" }],
+        [2002, "2019-11-01T00:00:00", { code: "JU", name: "Juniors" }],
+        [2002, "2021-10-31T23:59:59", { code: "JU", name: "Juniors" }],
+        [2002, "2021-11-01T00:00:00", { code: "ES", name: "Espoirs" }],
+        [2002, "2024-08-31T23:59:59", { code: "ES", name: "Espoirs" }],
+        [2002, "2024-09-01T00:00:00", { code: "SE", name: "Seniors" }],
+      ],
+    ],
+    [
+      "Category evolution for somebody born in 2005",
+      [
+        [2005, "2012-01-01T00:00:00", { code: "EA", name: "École d'Athlétisme" }],
+        [2005, "2014-10-31T23:59:59", { code: "EA", name: "École d'Athlétisme" }],
+        [2005, "2014-11-01T00:00:00", { code: "PO", name: "Poussins" }], // First time categories change on November 1st
+        [2005, "2016-10-31T23:59:59", { code: "PO", name: "Poussins" }],
+        [2005, "2016-11-01T00:00:00", { code: "BE", name: "Benjamins" }],
+        [2005, "2018-10-31T23:59:59", { code: "BE", name: "Benjamins" }],
+        [2005, "2018-11-01T00:00:00", { code: "MI", name: "Minimes" }],
+        [2005, "2020-10-31T23:59:59", { code: "MI", name: "Minimes" }],
+        [2005, "2020-11-01T00:00:00", { code: "CA", name: "Cadets" }],
+        [2005, "2022-08-31T23:59:59", { code: "CA", name: "Cadets" }],
+        [2005, "2022-09-01T00:00:00", { code: "JU", name: "Juniors" }], // First time categories change on September 1st
+        [2005, "2024-08-31T23:59:59", { code: "JU", name: "Juniors" }],
+        [2005, "2024-09-01T00:00:00", { code: "ES", name: "Espoirs" }],
+        [2005, "2027-08-31T23:59:59", { code: "ES", name: "Espoirs" }],
+        [2005, "2027-09-01T00:00:00", { code: "SE", name: "Seniors" }],
+      ],
+    ],
+    [
       "Category evolution for somebody born in 2015",
       [
         [2015, "2015-01-01T00:00:00", { code: "EA", name: "École d'Athlétisme" }],
@@ -12,7 +88,7 @@ describe("Category depending on date and birth date", () => {
         [2015, "2021-10-31T23:59:59", { code: "BB", name: "Baby Athlé" }],
         [2015, "2021-11-01T00:00:00", { code: "EA", name: "École d'Athlétisme" }],
         [2015, "2022-08-31T23:59:59", { code: "EA", name: "École d'Athlétisme" }],
-        [2015, "2022-09-01T00:00:00", { code: "EA", name: "Éveil Athlétique" }],
+        [2015, "2022-09-01T00:00:00", { code: "EA", name: "Éveil Athlétique" }], // First time categories change on September 1st
         [2015, "2024-08-31T23:59:59", { code: "EA", name: "Éveil Athlétique" }],
         [2015, "2024-09-01T00:00:00", { code: "PO", name: "Poussins" }],
         [2015, "2026-08-31T23:59:59", { code: "PO", name: "Poussins" }],
