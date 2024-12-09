@@ -1,9 +1,13 @@
 {
   "name": "ffa-categories",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Package utilitaire permettant de manipuler les catégories de la Fédération Française d'Athlétisme",
   "author": "Emile Calixte",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EmileCalixte/ffa-categories.git"
+  },
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
@@ -22,9 +26,9 @@
   },
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "import": "./dist/utils.mjs",
-      "require": "./dist/utils.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "keywords": [
