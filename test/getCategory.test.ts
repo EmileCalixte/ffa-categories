@@ -4,6 +4,50 @@ import { getCategory } from "../src";
 describe("Category depending on date and birth date", () => {
   const testCases = [
     [
+      "Category evolution for somebody born in 1934",
+      [
+        [1934, "2012-01-01T00:00:00", { code: "VE", name: "Vétérans" }, { code: "V4", name: "Vétérans 4" }],
+        [1934, "2015-10-31T23:59:59", { code: "VE", name: "Vétérans" }, { code: "V4", name: "Vétérans 4" }],
+        [1934, "2015-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "V5", name: "Masters 5" }], // 'Vétérans' are now named 'Masters', with a new 5th sub-category
+        [1934, "2019-10-31T23:59:59", { code: "VE", name: "Masters" }, { code: "V5", name: "Masters 5" }],
+        [1934, "2019-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M10", name: "Masters 10" }], // 'Masters' categories are now split in 10 sub-categories instead of 5, with new 'Mx' code
+        [1934, "2024-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M10", name: "Masters 10" }],
+        [1934, "2024-09-01T00:00:00", { code: "MA", name: "Masters" }, { code: "M10", name: "Masters 10" }], // Code 'VE' becomes 'MA' from September 1st 2024 (2025 categories)
+      ],
+    ],
+    [
+      "Category evolution for somebody born in 1943",
+      [
+        [1943, "2012-01-01T00:00:00", { code: "VE", name: "Vétérans" }, { code: "V3", name: "Vétérans 3" }],
+        [1943, "2012-12-31T23:59:59", { code: "VE", name: "Vétérans" }, { code: "V3", name: "Vétérans 3" }],
+        [1943, "2013-01-01T00:00:00", { code: "VE", name: "Vétérans" }, { code: "V4", name: "Vétérans 4" }],
+        [1943, "2015-10-31T23:59:59", { code: "VE", name: "Vétérans" }, { code: "V4", name: "Vétérans 4" }],
+        [1943, "2015-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "V4", name: "Masters 4" }], // 'Vétérans' are now named 'Masters'
+        [1943, "2019-10-31T23:59:59", { code: "VE", name: "Masters" }, { code: "V4", name: "Masters 4" }],
+        [1943, "2019-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M8", name: "Masters 8" }], // 'Masters' categories are now split in 10 sub-categories instead of 5, with new 'Mx' code
+        [1943, "2022-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M8", name: "Masters 8" }],
+        [1943, "2022-09-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M9", name: "Masters 9" }], // First time categories change on September 1st
+        [1943, "2024-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M9", name: "Masters 9" }],
+        [1943, "2024-09-01T00:00:00", { code: "MA", name: "Masters" }, { code: "M9", name: "Masters 9" }], // Code 'VE' becomes 'MA' from September 1st 2024 (2025 categories)
+      ],
+    ],
+    [
+      "Category evolution for somebody born in 1957",
+      [
+        [1957, "2012-01-01T00:00:00", { code: "VE", name: "Vétérans" }, { code: "V2", name: "Vétérans 2" }],
+        [1957, "2015-10-31T23:59:59", { code: "VE", name: "Vétérans" }, { code: "V2", name: "Vétérans 2" }],
+        [1957, "2015-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "V2", name: "Masters 2" }], // 'Vétérans' are now named 'Masters'
+        [1957, "2016-10-31T23:59:59", { code: "VE", name: "Masters" }, { code: "V2", name: "Masters 2" }],
+        [1957, "2016-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "V3", name: "Masters 3" }],
+        [1957, "2019-10-31T23:59:59", { code: "VE", name: "Masters" }, { code: "V3", name: "Masters 3" }],
+        [1957, "2019-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M5", name: "Masters 5" }], // 'Masters' categories are now split in 10 sub-categories instead of 5, with new 'Mx' code
+        [1957, "2021-10-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M5", name: "Masters 5" }],
+        [1957, "2021-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M6", name: "Masters 6" }],
+        [1957, "2024-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M6", name: "Masters 6" }],
+        [1957, "2024-09-01T00:00:00", { code: "MA", name: "Masters" }, { code: "M6", name: "Masters 6" }], // Code 'VE' becomes 'MA' from September 1st 2024 (2025 categories)
+      ],
+    ],
+    [
       "Category evolution for somebody born in 1975",
       [
         [1975, "2012-01-01T00:00:00", { code: "SE", name: "Seniors" }],
@@ -12,7 +56,7 @@ describe("Category depending on date and birth date", () => {
         [1975, "2015-10-31T23:59:59", { code: "VE", name: "Vétérans" }, { code: "V1", name: "Vétérans 1" }],
         [1975, "2015-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "V1", name: "Masters 1" }], // 'Vétérans' are now named 'Masters'
         [1975, "2019-10-31T23:59:59", { code: "VE", name: "Masters" }, { code: "V1", name: "Masters 1" }],
-        [1975, "2019-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M2", name: "Masters 2" }], // 'Masters' categories are split in 10 sub-categories instead of 5, with new 'Mx' code
+        [1975, "2019-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M2", name: "Masters 2" }], // 'Masters' categories are now split in 10 sub-categories instead of 5, with new 'Mx' code
         [1975, "2024-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M2", name: "Masters 2" }],
         [1975, "2024-09-01T00:00:00", { code: "MA", name: "Masters" }, { code: "M3", name: "Masters 3" }], // Code 'VE' becomes 'MA' from September 1st 2024 (2025 categories)
       ],
@@ -22,7 +66,7 @@ describe("Category depending on date and birth date", () => {
       [
         [1984, "2012-01-01T00:00:00", { code: "SE", name: "Seniors" }],
         [1984, "2019-10-31T23:59:59", { code: "SE", name: "Seniors" }],
-        [1984, "2019-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M0", name: "Masters 0" }], // 'Masters' categories are split in 10 sub-categories instead of 5 and takes effect 5 years younger
+        [1984, "2019-11-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M0", name: "Masters 0" }], // 'Masters' categories are now split in 10 sub-categories instead of 5 and takes effect 5 years younger
         [1984, "2023-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M0", name: "Masters 0" }],
         [1984, "2023-09-01T00:00:00", { code: "VE", name: "Masters" }, { code: "M1", name: "Masters 1" }],
         [1984, "2024-08-31T23:59:59", { code: "VE", name: "Masters" }, { code: "M1", name: "Masters 1" }],
