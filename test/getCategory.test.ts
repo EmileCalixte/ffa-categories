@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getCategory } from "../src";
+import { getCategory } from "../src/getCategory";
 
 describe("Category depending on date and birth date", () => {
   const testCases = [

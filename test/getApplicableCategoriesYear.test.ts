@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getApplicableCategoriesYear } from "../src";
+import { getApplicableCategoriesYear } from "../src/getApplicableCategoriesYear";
 
 describe("Categories year depending on date", () => {
   const testCases = [

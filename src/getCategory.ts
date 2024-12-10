@@ -65,12 +65,12 @@ interface GetCategoryOptions {
  *
  * @example
  * ```ts
- * getCategoryCode(2002, { date: new Date("2021-10-29") }); // Returns { code: "JU", name: "Juniors" }
- * getCategoryCode(2002, { date: new Date("2021-11-01") }); // Returns { code: "ES", name: "Espoirs" }
- * getCategoryCode(1970, { date: new Date("2025-01-01") }); // Returns { code: "M4", name: "Masters 4" }
- * getCategoryCode(1970, { date: new Date("2025-01-01"), detailed: false }); // Returns { code: "MA", name: "Masters" }
- * getCategoryCode(1970, { date: new Date("2015-01-01") }); // Returns { code: "V1", name: "Vétérans 1" }
- * getCategoryCode(1970, { date: new Date("2015-01-01"), detailed: false }); // Returns { code: "VE", name: "Vétérans" }
+ * getCategory(2002, { date: new Date("2021-10-29") }); // Returns { code: "JU", name: "Juniors" }
+ * getCategory(2002, { date: new Date("2021-11-01") }); // Returns { code: "ES", name: "Espoirs" }
+ * getCategory(1970, { date: new Date("2025-01-01") }); // Returns { code: "M4", name: "Masters 4" }
+ * getCategory(1970, { date: new Date("2025-01-01"), detailed: false }); // Returns { code: "MA", name: "Masters" }
+ * getCategory(1970, { date: new Date("2015-01-01") }); // Returns { code: "V1", name: "Vétérans 1" }
+ * getCategory(1970, { date: new Date("2015-01-01"), detailed: false }); // Returns { code: "VE", name: "Vétérans" }
  * ```
  */
 export function getCategory(birthYear: number, options: Partial<GetCategoryOptions> = {}): CategoryData {
