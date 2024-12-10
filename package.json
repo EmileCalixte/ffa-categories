@@ -1,5 +1,5 @@
 {
-  "name": "ffa-categories",
+  "name": "@emilecalixte/ffa-categories",
   "version": "0.1.0",
   "description": "Package utilitaire permettant de manipuler les catégories de la Fédération Française d'Athlétisme",
   "author": "Emile Calixte",
@@ -34,7 +34,9 @@
   "files": ["dist"],
   "keywords": [
     "ffa",
-    "fédération française d'athlétisme"
+    "fédération française d'athlétisme",
+    "france",
+    "utilities"
   ],
   "license": "GPL-3.0",
   "type": "module",
