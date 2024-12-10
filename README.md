@@ -42,21 +42,22 @@ import { getCategoryList, getApplicableCategoriesYear } from "ffa-categories";
 // CommonJS
 const { getCategoryList, getApplicableCategoriesYear } = require("ffa-categories");
 
+
 // Obtenir la liste des catégories existantes à une date donnée
 getCategoryList(new Date("2015-01-23")); // { EA: "École d'Athlétisme", PO: "Poussins", ..., V1: "Vétérans 1", V2: ... }
 
 // Obtenir la liste des catégories existantes à une date données sans les détails des catégories "Vétérans" / "Masters"
-getCategoryList(new Date("2025-03-21")); // { BB: "Baby Athlé", EA: "Éveil Athlétique", ..., MA: "Masters" }
+getCategoryList(new Date("2025-03-21"), false); // { BB: "Baby Athlé", EA: "Éveil Athlétique", ..., MA: "Masters" }
 
 // Obtenir la liste des catégories existantes à l'heure actuelle
 getCategoryList();
 
 // Obtenir l'année des catégories applicables à une date donnée
-getApplicableCategoriesYear(new Date("2013-12-31")) // 2013
-getApplicableCategoriesYear(new Date("2014-10-31")) // 2014
-getApplicableCategoriesYear(new Date("2014-11-01")) // 2015
-getApplicableCategoriesYear(new Date("2022-08-31")) // 2022
-getApplicableCategoriesYear(new Date("2022-09-01")) // 2023
+getApplicableCategoriesYear(new Date("2013-12-31")); // 2013
+getApplicableCategoriesYear(new Date("2014-10-31")); // 2014
+getApplicableCategoriesYear(new Date("2014-11-01")); // 2015
+getApplicableCategoriesYear(new Date("2022-08-31")); // 2022
+getApplicableCategoriesYear(new Date("2022-09-01")); // 2023
 ```
 
 ### Limitations
@@ -65,7 +66,7 @@ A l'heure actuelle, l'historique des catégories avant 2012 n'est pas garanti.
 
 ### Historique des changements de catégories
 
-Liste des événements pris en charge :
+Liste des événements connus et pris en compte depuis 2012 :
 
 - Avant 2014, les années de naissance pour chaque catégorie changent au 1er janvier de chaque année. A partir du 1er novembre 2014, le changement a lieu au 1er novembre de chaque année (à partir du 1er novembre de l'année N, les catégories de l'année N+1 s'appliquent)
 - A partir du 1er novembre 2015 (catégories de 2016) : la catégorie "Baby Athlé" apparaît avant la catégorie "École d'Athlétisme", les catégories "Vétérans" sont appelées "Masters" et la catégorie "Masters 5" apparaît (auparavant la dernière catégorie était "Vétérans 4")
