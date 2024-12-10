@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - ready_for_review # When a PR changes from draft to ready for review
+      - synchronize # When new commits are added to the PR
+  push:
+    branches: [ master ]
+
+jobs:
+  test:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-24.04
+    container: ubuntu:24.04
+
+    steps:
+      - name: Update apt
+        run: apt-get update
+
+      - name: Install misc tools
+        run: apt-get install -y curl
+
+      - name: Install Node.js 20
+        run: |
+          curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+          apt-get install -y nodejs
+
+      - name: Enable corepack to use pnpm
+        run: corepack enable
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Install JS dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run ESLint
+        run: pnpm lint
+
+      - name: Run tests
+        run: pnpm test
