@@ -31,6 +31,7 @@
       "require": "./dist/index.cjs"
     }
   },
+  "files": ["dist"],
   "keywords": [
     "ffa",
     "fédération française d'athlétisme"
