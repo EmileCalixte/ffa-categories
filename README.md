@@ -5,7 +5,7 @@ Un paquet utilitaire permettant de manipuler les catégories de la Fédération 
 ## Installation
 
 ```sh
-npm install ffa-categories
+npm install @emilecalixte/ffa-categories
 ```
 
 ## Utilisation
