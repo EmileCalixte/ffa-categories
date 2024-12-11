@@ -12,10 +12,10 @@ npm install @emilecalixte/ffa-categories
 
 ```js
 // Module import
-import { getCategory } from "ffa-categories";
+import { getCategory } from "@emilecalixte/ffa-categories";
 
 // CommonJS
-const { getCategory } = require("ffa-categories");
+const { getCategory } = require("@emilecalixte/ffa-categories");
 
 
 // Obtenir la catégorie d'un coureur né en 2002 à la date du 29 octobre 2021
@@ -37,10 +37,10 @@ getCategory(2004);
 
 ```js
 // Module import
-import { getCategoryList, getApplicableCategoriesYear } from "ffa-categories";
+import { getCategoryList, getApplicableCategoriesYear, isCategoryCode } from "@emilecalixte/ffa-categories";
 
 // CommonJS
-const { getCategoryList, getApplicableCategoriesYear } = require("ffa-categories");
+const { getCategoryList, getApplicableCategoriesYear, isCategoryCode } = require("@emilecalixte/ffa-categories");
 
 
 // Obtenir la liste des catégories existantes à une date donnée
@@ -58,6 +58,28 @@ getApplicableCategoriesYear(new Date("2014-10-31")); // 2014
 getApplicableCategoriesYear(new Date("2014-11-01")); // 2015
 getApplicableCategoriesYear(new Date("2022-08-31")); // 2022
 getApplicableCategoriesYear(new Date("2022-09-01")); // 2023
+
+// Savoir si un string est un code de catégorie valide ou non
+isCategoryCode("BB"); // true
+isCategoryCode("MA"); // true
+isCategoryCode("V3"); // true
+isCategoryCode("IN"); // false
+```
+
+### Constantes
+
+```js
+// Module import
+import { ALL_CATEGORY_CODES, ALL_CATEGORY_NAMES } from "@emilecalixte/ffa-categories";
+
+// CommonJS
+const { ALL_CATEGORY_CODES, ALL_CATEGORY_NAMES } = require("@emilecalixte/ffa-categories");
+
+// Liste de tous les codes de catégories ayant existé
+console.log(ALL_CATEGORY_CODES); // ["BB", "EA", ..., "VE", "V1", ..., "MA", "M1", ..., "M10"]
+
+// Liste de tous les noms de catégories ayant existé
+console.log(ALL_CATEGORY_NAMES); // ["Baby Athlé", ..., "Vétérans", ..., "Masters 10"]
 ```
 
 ### Limitations

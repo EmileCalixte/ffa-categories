@@ -202,3 +202,19 @@ export const ALL_CATEGORY_CODES = objectKeys({
   ...CATEGORIES_2025_AND_AFTER,
   ...DETAILED_CATEGORIES_2025_AND_AFTER,
 });
+
+/**
+ * All existing category names
+ */
+export const ALL_CATEGORY_NAMES = [
+  ...Object.values(CATEGORIES_2015_AND_BEFORE),
+  ...Object.values(DETAILED_CATEGORIES_2015_AND_BEFORE),
+  ...Object.values(CATEGORIES_2016_TO_2019),
+  ...Object.values(DETAILED_CATEGORIES_2016_TO_2019),
+  ...Object.values(CATEGORIES_2020_TO_2022),
+  ...Object.values(DETAILED_CATEGORIES_2020_TO_2022),
+  ...Object.values(CATEGORIES_2023_TO_2024),
+  ...Object.values(DETAILED_CATEGORIES_2023_TO_2024),
+  ...Object.values(CATEGORIES_2025_AND_AFTER),
+  ...Object.values(DETAILED_CATEGORIES_2025_AND_AFTER),
+];
