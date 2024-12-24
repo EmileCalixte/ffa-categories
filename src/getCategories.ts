@@ -72,7 +72,7 @@ function getCategoryLists(date: Date): [CategoryList, CategoryList, CategoryList
 /**
  * Returns list of categories existing at a given date
  * @param date - The date for which categories should be retrieved. Default: current date
- * @param detailed - Whether or not to return detailed list (with detailes "Vétérans" or "Masters" categories). Default: true
+ * @param detailed - Whether or not to return detailed list (with detailed "Vétérans" or "Masters" categories). Default: true
  * @returns The category list
  */
 export function getCategoryList(date: Date = new Date(), detailed = true): CategoryList {
