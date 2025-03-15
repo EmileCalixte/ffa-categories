@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ALL_CATEGORY_CODES, isCategoryCode } from "../src";
 
-describe("Toto", () => {
+describe("Is category code", () => {
   const validCategoryCodes = [
     "BB",
     "EA",
