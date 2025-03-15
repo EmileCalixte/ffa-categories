@@ -89,8 +89,8 @@ describe("Category depending on date and birth date", () => {
       "Category evolution for somebody born in 2002",
       [
         [2002, "2012-01-01T00:00:00", { code: "PO", name: "Poussins" }],
-        [2002, "2013-12-31T23:59:59", { code: "PO", name: "Poussins" }],
-        [2002, "2014-01-01T00:00:00", { code: "BE", name: "Benjamins" }],
+        [2002, "2013-10-31T23:59:59", { code: "PO", name: "Poussins" }],
+        [2002, "2013-11-01T00:00:00", { code: "BE", name: "Benjamins" }],
         [2002, "2015-10-31T23:59:59", { code: "BE", name: "Benjamins" }],
         [2002, "2015-11-01T00:00:00", { code: "MI", name: "Minimes" }],
         [2002, "2017-10-31T23:59:59", { code: "MI", name: "Minimes" }],
