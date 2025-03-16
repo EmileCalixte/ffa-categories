@@ -1,6 +1,6 @@
 {
   "name": "@emilecalixte/ffa-categories",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Package utilitaire permettant de manipuler les catégories de la Fédération Française d'Athlétisme",
   "author": "Emile Calixte",
   "main": "dist/index.js",
