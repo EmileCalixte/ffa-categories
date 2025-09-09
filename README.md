@@ -84,7 +84,8 @@ console.log(ALL_CATEGORY_NAMES); // ["Baby Athlé", ..., "Vétérans", ..., "Mas
 
 ### Limitations
 
-A l'heure actuelle, l'historique des catégories avant 2012 n'est pas garanti.
+- A l'heure actuelle, l'historique des catégories avant 2012 n'est pas garanti. Depuis 2012, l'historique des changements a pu être reconstitué grâce aux archivages de la [liste officielle des catégories d'âge](https://www.athle.fr/asp.net/main.html/html.aspx?htmlid=25) présents sur [Internet Archive](https://web.archive.org/web/20250000000000*/https://www.athle.fr/asp.net/main.html/html.aspx?htmlid=25).
+- Seules les appellations françaises des catégories sont supportées. Les équivalents internationaux (U18, U20, etc.) ne le sont pas.
 
 ### Historique des changements de catégories
 
