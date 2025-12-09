@@ -24,23 +24,21 @@ function getCategoryFromAge(date: Date, detailed: boolean, age: number): Categor
     return getCategoryDataFromCode(categoryCode, categories);
   }
 
-  if (age < 0) {
-    age = 0;
-  }
+  const normalizedAge = Math.max(0, age);
 
   const categories = getCategoryList(date, detailed);
   const minAges = getCategoryMinAges(date, detailed);
 
   let currentCategoryCode: string | null = null;
   for (const [categoryCode, minAge] of Object.entries(minAges).sort(([, minAge1], [, minAge2]) => minAge1 - minAge2)) {
-    if (age < minAge) {
-      return rtrn(age, currentCategoryCode as CategoryCode | null, categories);
+    if (normalizedAge < minAge) {
+      return rtrn(normalizedAge, currentCategoryCode as CategoryCode | null, categories);
     }
 
     currentCategoryCode = categoryCode;
   }
 
-  return rtrn(age, currentCategoryCode as CategoryCode | null, categories);
+  return rtrn(normalizedAge, currentCategoryCode as CategoryCode | null, categories);
 }
 
 interface GetCategoryOptions {
